@@ -1,25 +1,32 @@
 package com.example.tipscalculator
 
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.textfield.TextInputEditText
+import com.example.tipscalculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val btnClean: Button = findViewById(R.id.btn_clean)
-        val btnDone: Button = findViewById(R.id.btn_done)
-        val edtTotal: TextInputEditText = findViewById(R.id.tie_total)
-        val edtNumPeople: TextInputEditText = findViewById(R.id.tie_num_people)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btnClean.setOnClickListener {
-            println("Roque1" + edtTotal.text)
-        println("Roque1" + edtNumPeople.text)
+        // Botão limpar
+        binding.btnClean.setOnClickListener {
+            println("Roque1 " + binding.tieTotal.text)
+            println("Roque1 " + binding.tieNumPeople.text)
+        }
+
+        // Botão done
+        binding.btnDone.setOnClickListener {
+            val total = binding.tieTotal.text?.toString()
+            val numPeople = binding.tieNumPeople.text?.toString()
+            println("Total: $total, Número de pessoas: $numPeople")
         }
     }
 }
+
+
